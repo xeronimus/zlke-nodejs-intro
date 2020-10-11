@@ -23,16 +23,13 @@
         <section>
           <h2>Node.js</h2>
           <p>
-            &quot;...is an open-source, cross-platform, back-end, JavaScript
-            runtime environment that executes JavaScript code outside a web
-            browser.&quot;
+            &quot;...is an open-source, cross-platform, back-end, JavaScript runtime environment
+            that executes JavaScript code outside a web browser.&quot;
           </p>
 
           <ul>
             <li>
-              <a href="https://nodejs.org/" target="_blank"
-                >https://nodejs.org/</a
-              >
+              <a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a>
             </li>
             <li>
               <a href="https://nodejs.org/" target="_blank"
@@ -43,9 +40,18 @@
         </section>
 
         <section>
-          <h2>Node.js REPL</h2>
-          <pre>
-          <code
+          <h2>History</h2>
+
+          <ul>
+            <li>Node.js was written initially by Ryan Dahl in 2009</li>
+            <li><a href="https://npmjs.org" target="_blank">npm</a> was introduced in 2010</li>
+            <li>Currently in version 14.x (LTS 12.x)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>REPL</h2>
+          <pre><code
             class="hljs javascript"
             data-trim
             contenteditable
@@ -57,15 +63,13 @@
             > ++v
             1
             > ('b'+'a'+ +'a'+'a').toLowerCase()
-          </code>
-          </pre>
+          </code></pre>
         </section>
 
         <section>
-          <h2>Node.js runtime</h2>
+          <h2>node command</h2>
 
-          <pre>
-          <code
+          <pre><code
                   class="hljs javascript"
                   data-trim
                   contenteditable
@@ -75,11 +79,9 @@
             // simple.js
             const greeting = 'Hello World!';
             console.log(greeting);
-          </code>
-          </pre>
+          </code></pre>
 
-          <pre>
-          <code
+          <pre><code
                   class="hljs javascript"
                   data-trim
                   contenteditable
@@ -87,40 +89,177 @@
                   spellcheck="false"
           >
             $ node simple.js
-          </code>
-          </pre>
+            Hello World!
+          </code></pre>
         </section>
 
         <section>
-          <h2>Node.js core modules</h2>
+          <h2>Multiple files - modules</h2>
 
-          <p>
-            No browser sandbox, we have access to file system, networking
-            through core modules
-          </p>
+          <ul>
+            <li>CommonJS module format by default (require / module.exports)</li>
+            <li>esm fully supported (unflagged in late 2019)</li>
+          </ul>
+        </section>
 
-          <pre>
-          <code
+        <section>
+          <h2>Multiple files - modules</h2>
+
+          <pre><code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+            >
+            // myOtherFile.js
+            module.exports = {
+                a: 'a property',
+                b: aFunction
+            };
+
+            function aFunction() {
+                return 'return value';
+            }
+          </code></pre>
+          <a class="script-ref" href="../scripts/myOtherFile.js">/scripts/myOtherFile.js</a>
+
+          <pre><code
             class="hljs javascript"
             data-trim
             contenteditable
             data-noescape
             spellcheck="false"
           >
+            // main.js
+            const myOtherFile = require('./myOtherFile')
 
-          </code>
-            </pre>
+            console.log(myOtherFile.a);
+            console.log(myOtherFile.b());
+          </code></pre>
+          <a class="script-ref" href="../scripts/main.js">/scripts/main.js</a>
         </section>
 
         <section>
-          <h2>Node.js history</h2>
+          <section>
+            <h2>Node.js core modules</h2>
 
-          <p>Node.js was written initially by Ryan Dahl in 2009</p>
-          <p>
-            <a href="https://npmjs.org" target="_blank">npm</a> was introduced
-            in 2010
-          </p>
-          <p>Currently in version 14.x (LTS 12.x)</p>
+            <p>
+              No browser - no sandbox: we have access to file system & networking through core
+              modules
+            </p>
+
+            <pre><code
+              class="hljs javascript"
+              data-trim
+              contenteditable
+              data-noescape
+              spellcheck="false"
+            >
+              const fs = require('fs');
+
+              fs.readFile('./README.md', 'utf-8', (err, result) => {
+                  if (err) {
+                      console.error(err);
+                  } else {
+                      console.log(result);
+                  }
+              });
+            </code></pre>
+            <a class="script-ref" href="../scripts/coreModules.js">/scripts/coreModules.js</a>
+
+            <p>
+              <a href="https://nodejs.org/dist/latest/docs/api/" target="_blank"
+                >https://nodejs.org/dist/latest/docs/api/</a
+              >
+            </p>
+          </section>
+
+          <section>
+            <h2>"node style" callback function</h2>
+
+            <p>Most of the asynchronous core api functions (still) have the following signature.</p>
+
+            <pre><code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+            >
+
+            module.function('some.parameters', (err, result) => {
+                if (err) {
+                    // first argument is either an error object
+                    // or falsy (null/undefined)
+                } else {
+                    // if no error occurred,
+                    // you can process the result
+                }
+            });
+          </code></pre>
+          </section>
+
+          <section>
+            <h2>Promises... not quite there yet</h2>
+
+            <pre><code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+            >
+            const fsPromises = require('fs').promises;
+
+            fsPromises.readdir(__dirname).then((result) => (
+                console.log(result)
+            ));
+          </code></pre>
+            <a class="script-ref" href="../scripts/promisesWorkarounds1.js"
+              >/scripts/promisesWorkarounds1.js</a
+            >
+          </section>
+
+          <section>
+            <h2>Promises... not quite there yet</h2>
+            <pre><code
+              class="hljs javascript"
+              data-trim
+              contenteditable
+              data-noescape
+              spellcheck="false"
+            >
+              const util = require('util');
+              const {exec} = require('child_process');
+
+              exec('pwd', (err, stdout, stderr) => {
+                if (err) {
+                  console.error('that did not work', err);
+                } else {
+                  console.log(stdout, stderr);
+                }
+              });
+
+              const pExec = util.promisify(exec);
+
+              pExec('pwd')
+                .then((result) => console.log(result.stdout))
+                .catch((err) => console.error('that did not work', err));
+            </code></pre>
+            <a class="script-ref" href="../scripts/promisesWorkarounds2.js"
+              >/scripts/promisesWorkarounds2.js</a
+            >
+          </section>
+        </section>
+        <section>
+          <h2>Recap</h2>
+
+          <ul>
+            <li>Running JavaScript outside a browser (i.e. on a server)</li>
+            <li>CommonJS modules</li>
+            <li>Access to I/O through core modules</li>
+          </ul>
         </section>
 
         <section class="deck-slide">
@@ -136,7 +275,7 @@
     <script>
       Reveal.initialize({
         hash: true,
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
       });
     </script>
   </body>

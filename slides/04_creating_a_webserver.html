@@ -11,40 +11,42 @@
     <link rel="stylesheet" href="../css/theme/zuehlke.css" />
     <link rel="stylesheet" href="../lib/css/monokai.css" />
 
-    <title>01 Template Topic | Introduction to Node.JS</title>
+    <title>04 Creating a webserver | Introduction to NodeJS</title>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <section class="deck-slide">
-          <h1>Template Topic</h1>
+          <h1>04 Creating a webserver</h1>
         </section>
 
-        <!--  first section -->
         <section>
-          <!-- sub section 1 -->
-          <section>
-            <h2>Section Title</h2>
-            <p>Some Content</p>
-          </section>
+          <h2>A simple webserver</h2>
 
-          <!-- sub section 2 -->
-          <section>
-            <h2>Section Title</h2>
-            <p>Some more</p>
+          <pre><code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+          >
+          const http = require('http');
 
-            <pre><code
-              class="hljs javascript"
-              data-trim
-              contenteditable
-              data-noescape
-              spellcheck="false"
-            >
-              0 == true; // false because true is converted to 1 1 == "1"; //
-              true because 1 is converted to "1" let x = 0 + ""; // x will be a
-              string "0"
-            </code></pre>
-          </section>
+          http.createServer((req, res) => {
+              res.write('Hello World!');
+              res.end();
+          }).listen(8080);
+          </code></pre>
+          <a class="script-ref" href="../scripts/simpleServer.js">/scripts/simpleServer.js</a>
+        </section>
+
+        <section>
+          <h2>Recap</h2>
+
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
         </section>
 
         <section class="deck-slide">

@@ -17,21 +17,51 @@
     <div class="reveal">
       <div class="slides">
         <section class="deck-slide">
-          <h1>01 Technical details</h1>
+          <h1>02 Technical details</h1>
         </section>
 
         <section>
           <h2>Node.js</h2>
           <ul>
+            <li>Written in C/C++</li>
             <li>
               Runs on Google's
-              <a
-                href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)"
-                target="_blank"
-                >V8</a
+              <a href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)" target="_blank">V8</a>
+            </li>
+            <li>Single threaded, but still asynchronous and non-blocking</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The event loop</h2>
+
+          <p>
+            &quot;The event loop is what allows Node.js to perform non-blocking I/O operations by
+            offloading operations to the system kernel whenever possible.&quot;
+          </p>
+
+          <img src="../img/js-event-loop.png" style="max-width: 50%" />
+        </section>
+
+        <section>
+          <h2>The event loop</h2>
+
+          <ul>
+            <li>
+              <a href="https://nodejs.dev/learn/the-nodejs-event-loop" target="_blank"
+                >Official documentation</a
               >
             </li>
-            <li>single threaded, but still asynchronous and non-blocking</li>
+            <li>
+              <a href="https://github.com/libuv/libuv" target="_blank">libuv</a>
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=PNa9OMajw9w&ab_channel=node.js"
+                target="_blank"
+                >Everything You Need to Know About Node.js Event Loop</a
+              >
+            </li>
           </ul>
         </section>
 
@@ -48,7 +78,7 @@
     <script>
       Reveal.initialize({
         hash: true,
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
       });
     </script>
   </body>

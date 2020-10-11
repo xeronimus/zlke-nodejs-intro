@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" href="../img/zuehlke_logo.jpg" />
+    <link rel="stylesheet" href="../css/reveal.css" />
+    <link rel="stylesheet" href="../css/theme/zuehlke.css" />
+    <link rel="stylesheet" href="../lib/css/monokai.css" />
+
+    <title>03 Creating a CLI tool | Introduction to NodeJS</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="deck-slide">
+          <h1>03 Creating a CLI tool</h1>
+        </section>
+
+        <section>
+          <h2>The "process" object</h2>
+
+          <p>process.arg gives us access to the command line arguments</p>
+
+          <pre><code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+          // mySuperFile.js
+          console.log(process.argv);
+          </code></pre>
+
+          <pre><code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+          >
+          $ node mySuperFile.js arg1 arg2
+          </code></pre>
+
+          <pre><code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+          >
+          [
+            '/node/v10.16.2/bin/node',
+            '/home/user/path/main.js',
+            'arg1',
+            'arg2'
+          ]
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>The "process" object</h2>
+
+          <p>process.exit allows us to abort. We can pass in the exitCode.</p>
+
+          <pre><code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+          // justSomeFile.js
+          process.exit(1);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Recap</h2>
+
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+        </section>
+
+        <section class="deck-slide">
+          <h1>Questions?</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+      });
+    </script>
+  </body>
+</html>

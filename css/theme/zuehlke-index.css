@@ -1,11 +1,11 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600);
 @font-face {
-  font-family: "Zuehlke";
-  src: url("../../lib/font/zuehlke/zuehlke-webfont.eot?") format("eot"),
-    url("../../lib/font/zuehlke/zuehlke-webfont.woff2") format("woff2"),
-    url("../../lib/font/zuehlke/zuehlke-webfont.woff") format("woff"),
-    url("../../lib/font/zuehlke/zuehlke-webfont.ttf") format("truetype"),
-    url("../../lib/font/zuehlke/zuehlke-webfont.svg") format("svg");
+  font-family: 'Zuehlke';
+  src: url('../../lib/font/zuehlke/zuehlke-webfont.eot?') format('eot'),
+    url('../../lib/font/zuehlke/zuehlke-webfont.woff2') format('woff2'),
+    url('../../lib/font/zuehlke/zuehlke-webfont.woff') format('woff'),
+    url('../../lib/font/zuehlke/zuehlke-webfont.ttf') format('truetype'),
+    url('../../lib/font/zuehlke/zuehlke-webfont.svg') format('svg');
 }
 
 * {
@@ -13,10 +13,10 @@
 }
 
 body {
-  font-family: "Open Sans", "sans-serif";
+  font-family: 'Open Sans', 'sans-serif';
   display: flex;
+  background: url('../../img/bg.jpg') center, center;
   background-size: cover;
-  background: url("../../img/bg.jpg") center, center;
   align-content: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -27,7 +27,7 @@ body {
   overflow: hidden;
 }
 body::before {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   top: 0;
@@ -38,7 +38,7 @@ body::before {
   min-height: 100px;
   max-width: 200px;
   max-height: 200px;
-  background: url("../../img/zuehlke_logo.jpg");
+  background: url('../../img/zuehlke_logo.jpg');
   background-size: contain;
 }
 body h1 {
@@ -47,7 +47,7 @@ body h1 {
 body h1,
 body h2,
 body h3 {
-  font-family: "Zuehlke", "sans-serif";
+  font-family: 'Zuehlke', 'sans-serif';
   color: #ff820a;
 }
 body .nowrap {
