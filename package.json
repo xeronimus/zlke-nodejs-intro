@@ -11,7 +11,7 @@
     "test": "gulp test",
     "start": "gulp serve",
     "build": "gulp",
-    "format": "prettier --write \"slides/**\" \"index.html\" \"css/theme/**/*.css\""
+    "format": "prettier --write \"slides/**\" \"index.html\" \"css/theme/**/*.css\" \"scripts/**/*.js\" "
   },
   "author": {
     "name": "Hakim El Hattab",
