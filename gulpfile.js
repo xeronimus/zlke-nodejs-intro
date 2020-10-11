@@ -57,14 +57,16 @@ const babelConfig = {
 // module support. Browsers are targeted explicitly instead
 // of using the "esmodule: true" target since that leads to
 // polyfilling older browsers and a larger bundle.
-const babelConfigESM = JSON.parse( JSON.stringify( babelConfig ) );
-babelConfigESM.presets[0][1].targets = { browsers: [
-    'last 2 Chrome versions', 'not Chrome < 60',
-    'last 2 Safari versions', 'not Safari < 10.1',
-    'last 2 iOS versions', 'not iOS < 10.3',
-    'last 2 Firefox versions', 'not Firefox < 60',
-    'last 2 Edge versions', 'not Edge < 16',
-] };
+const babelConfigESM = JSON.parse(JSON.stringify(babelConfig));
+babelConfigESM.presets[0][1].targets = {
+    browsers: [
+        'last 2 Chrome versions', 'not Chrome < 60',
+        'last 2 Safari versions', 'not Safari < 10.1',
+        'last 2 iOS versions', 'not iOS < 10.3',
+        'last 2 Firefox versions', 'not Firefox < 60',
+        'last 2 Edge versions', 'not Edge < 16',
+    ]
+};
 
 let cache = {};
 
@@ -77,10 +79,10 @@ gulp.task('js-es5', () => {
         plugins: [
             resolve(),
             commonjs(),
-            babel( babelConfig ),
+            babel(babelConfig),
             terser()
         ]
-    }).then( bundle => {
+    }).then(bundle => {
         cache.umd = bundle.cache;
         return bundle.write({
             name: 'Reveal',
@@ -100,10 +102,10 @@ gulp.task('js-es6', () => {
         plugins: [
             resolve(),
             commonjs(),
-            babel( babelConfigESM ),
+            babel(babelConfigESM),
             terser()
         ]
-    }).then( bundle => {
+    }).then(bundle => {
         cache.esm = bundle.cache;
         return bundle.write({
             file: './dist/reveal.esm.js',
@@ -119,45 +121,45 @@ gulp.task('js', gulp.parallel('js-es5', 'js-es6'));
 // built-in plugins
 gulp.task('plugins', () => {
     return Promise.all([
-        { name: 'RevealHighlight', input: './plugin/highlight/plugin.js', output: './plugin/highlight/highlight' },
-        { name: 'RevealMarkdown', input: './plugin/markdown/plugin.js', output: './plugin/markdown/markdown' },
-        { name: 'RevealSearch', input: './plugin/search/plugin.js', output: './plugin/search/search' },
-        { name: 'RevealNotes', input: './plugin/notes/plugin.js', output: './plugin/notes/notes' },
-        { name: 'RevealZoom', input: './plugin/zoom/plugin.js', output: './plugin/zoom/zoom' },
-        { name: 'RevealMath', input: './plugin/math/plugin.js', output: './plugin/math/math' },
-    ].map( plugin => {
+        {name: 'RevealHighlight', input: './plugin/highlight/plugin.js', output: './plugin/highlight/highlight'},
+        {name: 'RevealMarkdown', input: './plugin/markdown/plugin.js', output: './plugin/markdown/markdown'},
+        {name: 'RevealSearch', input: './plugin/search/plugin.js', output: './plugin/search/search'},
+        {name: 'RevealNotes', input: './plugin/notes/plugin.js', output: './plugin/notes/notes'},
+        {name: 'RevealZoom', input: './plugin/zoom/plugin.js', output: './plugin/zoom/zoom'},
+        {name: 'RevealMath', input: './plugin/math/plugin.js', output: './plugin/math/math'},
+    ].map(plugin => {
         return rollup({
-                cache: cache[plugin.input],
-                input: plugin.input,
-                plugins: [
-                    resolve(),
-                    commonjs(),
-                    babel({
-                        ...babelConfig,
-                        ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
-                    }),
-                    terser()
-                ]
-            }).then( bundle => {
-                cache[plugin.input] = bundle.cache;
-                bundle.write({
-                    file: plugin.output + '.esm.js',
-                    name: plugin.name,
-                    format: 'es'
-                })
+            cache: cache[plugin.input],
+            input: plugin.input,
+            plugins: [
+                resolve(),
+                commonjs(),
+                babel({
+                    ...babelConfig,
+                    ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
+                }),
+                terser()
+            ]
+        }).then(bundle => {
+            cache[plugin.input] = bundle.cache;
+            bundle.write({
+                file: plugin.output + '.esm.js',
+                name: plugin.name,
+                format: 'es'
+            })
 
-                bundle.write({
-                    file: plugin.output + '.js',
-                    name: plugin.name,
-                    format: 'umd'
-                })
-            });
-    } ));
+            bundle.write({
+                file: plugin.output + '.js',
+                name: plugin.name,
+                format: 'umd'
+            })
+        });
+    }));
 })
 
 gulp.task('css-themes', () => gulp.src(['./css/theme/source/*.{sass,scss}'])
-        .pipe(sass())
-        .pipe(gulp.dest('./dist/theme')))
+    .pipe(sass())
+    .pipe(gulp.dest('./dist/theme')))
 
 gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
     .pipe(sass())
@@ -177,15 +179,15 @@ gulp.task('qunit', () => {
         name: 'test-server'
     }
 
-    let server = connect.server( serverConfig )
+    let server = connect.server(serverConfig)
 
-    let testFiles = glob.sync('test/*.html' )
+    let testFiles = glob.sync('test/*.html')
 
     let totalTests = 0;
     let failingTests = 0;
 
-    let tests = Promise.all( testFiles.map( filename => {
-        return new Promise( ( resolve, reject ) => {
+    let tests = Promise.all(testFiles.map(filename => {
+        return new Promise((resolve, reject) => {
             qunit.runQunitPuppeteer({
                 targetUrl: `http://${serverConfig.host}:${serverConfig.port}/${filename}`,
                 timeout: 20000,
@@ -193,12 +195,11 @@ gulp.task('qunit', () => {
                 puppeteerArgs: ['--allow-file-access-from-files']
             })
                 .then(result => {
-                    if( result.stats.failed > 0 ) {
+                    if (result.stats.failed > 0) {
                         console.log(`${'!'} ${filename} [${result.stats.passed}/${result.stats.total}] in ${result.stats.runtime}ms`.red);
                         // qunit.printResultSummary(result, console);
                         qunit.printFailedTests(result, console);
-                    }
-                    else {
+                    } else {
                         console.log(`${'✔'} ${filename} [${result.stats.passed}/${result.stats.total}] in ${result.stats.runtime}ms`.green);
                     }
 
@@ -211,35 +212,34 @@ gulp.task('qunit', () => {
                     console.error(error);
                     reject();
                 });
-        } )
-    } ) );
+        })
+    }));
 
-    return new Promise( ( resolve, reject ) => {
+    return new Promise((resolve, reject) => {
 
-        tests.then( () => {
-                if( failingTests > 0 ) {
-                    reject( new Error(`${failingTests}/${totalTests} tests failed`.red) );
-                }
-                else {
-                    console.log(`${'✔'} Passed ${totalTests} tests`.green.bold);
-                    resolve();
-                }
-            } )
-            .catch( () => {
+        tests.then(() => {
+            if (failingTests > 0) {
+                reject(new Error(`${failingTests}/${totalTests} tests failed`.red));
+            } else {
+                console.log(`${'✔'} Passed ${totalTests} tests`.green.bold);
+                resolve();
+            }
+        })
+            .catch(() => {
                 reject();
-            } )
-            .finally( () => {
+            })
+            .finally(() => {
                 server.close();
-            } );
+            });
 
-    } );
-} )
+    });
+})
 
 gulp.task('eslint', () => gulp.src(['./js/**', 'gulpfile.js'])
-        .pipe(eslint())
-        .pipe(eslint.format()))
+    .pipe(eslint())
+    .pipe(eslint.format()))
 
-gulp.task('test', gulp.series( 'eslint', 'qunit' ))
+gulp.task('test', gulp.series('eslint', 'qunit'))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
@@ -255,7 +255,6 @@ gulp.task('package', gulp.series('default', () =>
         './plugin/**',
         './**.md'
     ]).pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
-
 ))
 
 gulp.task('reload', () => gulp.src(['*.html', '*.md'])
@@ -270,7 +269,7 @@ gulp.task('serve', () => {
         livereload: true
     })
 
-    gulp.watch(['*.html', '*.md'], gulp.series('reload'))
+    gulp.watch(['*.html', '*.md', 'slides/*.html'], gulp.series('reload'))
 
     gulp.watch(['js/**'], gulp.series('js', 'reload', 'test'))
 

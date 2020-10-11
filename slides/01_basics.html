@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" href="../img/zuehlke_logo.jpg" />
+    <link rel="stylesheet" href="../css/reveal.css" />
+    <link rel="stylesheet" href="../css/theme/zuehlke.css" />
+    <link rel="stylesheet" href="../lib/css/monokai.css" />
+
+    <title>01 Basics | Introduction to NodeJS</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="deck-slide">
+          <h1>01 Basics</h1>
+        </section>
+
+        <section>
+          <h2>Node.js</h2>
+          <p>
+            &quot;...is an open-source, cross-platform, back-end, JavaScript
+            runtime environment that executes JavaScript code outside a web
+            browser.&quot;
+          </p>
+
+          <ul>
+            <li>
+              <a href="https://nodejs.org/" target="_blank"
+                >https://nodejs.org/</a
+              >
+            </li>
+            <li>
+              <a href="https://nodejs.org/" target="_blank"
+                >https://en.wikipedia.org/wiki/Node.js</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Node.js REPL</h2>
+          <pre>
+          <code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+            $ node
+            > let v = 0
+            > ++v
+            1
+            > ('b'+'a'+ +'a'+'a').toLowerCase()
+          </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Node.js runtime</h2>
+
+          <pre>
+          <code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+          >
+            // simple.js
+            const greeting = 'Hello World!';
+            console.log(greeting);
+          </code>
+          </pre>
+
+          <pre>
+          <code
+                  class="hljs javascript"
+                  data-trim
+                  contenteditable
+                  data-noescape
+                  spellcheck="false"
+          >
+            $ node simple.js
+          </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Node.js core modules</h2>
+
+          <p>
+            No browser sandbox, we have access to file system, networking
+            through core modules
+          </p>
+
+          <pre>
+          <code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+
+          </code>
+            </pre>
+        </section>
+
+        <section>
+          <h2>Node.js history</h2>
+
+          <p>Node.js was written initially by Ryan Dahl in 2009</p>
+          <p>
+            <a href="https://npmjs.org" target="_blank">npm</a> was introduced
+            in 2010
+          </p>
+          <p>Currently in version 14.x (LTS 12.x)</p>
+        </section>
+
+        <section class="deck-slide">
+          <h1>Questions?</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>

@@ -10,7 +10,8 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp serve",
-    "build": "gulp"
+    "build": "gulp",
+    "format": "prettier --write \"slides/**\" \"index.html\" \"css/theme/**/*.css\""
   },
   "author": {
     "name": "Hakim El Hattab",
