@@ -41,6 +41,32 @@
         </section>
 
         <section>
+          <h2>Express.js</h2>
+
+          <p>MIT licensed backend <a href="http://expressjs.com/" target="_blank">web application framework</a>.</p>
+          <p>
+            &quot;Fast, unopinionated, minimalist web framework for Node.js&quot;<br />It has been
+            called the de facto standard server framework for Node.js.
+          </p>
+
+          <pre><code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+          const app = require('express')();
+          const port = 3000;
+
+          app.get('/', (req, res) => res.send('Hello World!'));
+
+          app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
+          </code></pre>
+          <a class="script-ref" href="../scripts/simpleExpress.js">/scripts/simpleExpress.js</a>
+        </section>
+
+        <section>
           <h2>Recap</h2>
 
           <ul>
