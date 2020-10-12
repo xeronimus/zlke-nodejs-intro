@@ -7,3 +7,5 @@
 
 
 # An introduction to Node.js
+
+Check out the slides at https://xeronimus.github.io/zlke-nodejs-intro/
