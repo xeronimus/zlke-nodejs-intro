@@ -21,41 +21,41 @@
         </section>
 
         <section>
-          <h2>The "process" object</h2>
+          <h2>The "process" object: argv</h2>
 
-          <p>process.arg gives us access to the command line arguments</p>
+          <p>process.argv gives us access to the command line arguments</p>
 
           <pre><code
-            class="hljs javascript"
-            data-trim
-            contenteditable
-            data-noescape
-            spellcheck="false"
-          >
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
           // mySuperFile.js
           console.log(process.argv);
           </code></pre>
 
           <pre><code
-                  class="hljs javascript"
-                  data-trim
-                  contenteditable
-                  data-noescape
-                  spellcheck="false"
-          >
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
           $ node mySuperFile.js arg1 arg2
           </code></pre>
 
           <pre><code
-                  class="hljs javascript"
-                  data-trim
-                  contenteditable
-                  data-noescape
-                  spellcheck="false"
-          >
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
           [
             '/node/v10.16.2/bin/node',
-            '/home/user/path/main.js',
+            '/home/user/path/mySuperFile.js',
             'arg1',
             'arg2'
           ]
@@ -63,10 +63,83 @@
         </section>
 
         <section>
-          <h2>The "process" object</h2>
+          <h2>The "process" object: env</h2>
+
+          <p>process.env allows us to access environment variables.</p>
+
+          <pre><code
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
+          // justSomeFile.js
+          console.log(process.env.SUPER_ENV_VAR);
+          </code></pre>
+
+          <pre><code
+        class="hljs bash"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
+         $ SUPER_ENV_VAR=myValue node justSomeFile.js
+         myValue
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>The "process" object: exit</h2>
 
           <p>process.exit allows us to abort. We can pass in the exitCode.</p>
 
+          <pre><code
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
+          // justSomeFile.js
+          process.exit(1);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>A simple cli tool</h2>
+          <pre><code
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
+            #!/usr/bin/env node
+            const os = require('os');
+            const args = process.argv;
+
+            if (args.length < 3) {
+              console.error(`please specify modus: simple or verbose`);
+              process.exit(1);
+            }
+
+            if (args[2] === 'simple') {
+             [..............]
+            } else if (args[2] === 'verbose') {
+             [..............]
+            } else {
+              throw new Error('First argument must be "simple" or "verbose');
+            }
+          </code></pre>
+          <a class="script-ref" href="../scripts/simpleCli.js">/scripts/simpleCli.js</a>
+        </section>
+
+        <section>
+          <h2>Well known helpers</h2>
+
+          <a href="https://www.npmjs.com/package/yargs" target="_blank">npmjs.com/package/yargs</a>
           <pre><code
             class="hljs javascript"
             data-trim
@@ -74,17 +147,39 @@
             data-noescape
             spellcheck="false"
           >
-          // justSomeFile.js
-          process.exit(1);
-          </code></pre>
-        </section>
+          const argv = yargs(process.argv.slice(2))
+            .command('$0 <source> [options]', 'scramble a file')
+            .option('write', {
+              alias: 'w',
+              describe: 'if set, write to file. Otherwise output to console'
+            })
+            .help().argv;
+          </code>
+          </pre>
 
+          <a href="https://www.npmjs.com/package/chalk" target="_blank">npmjs.com/package/chalk</a>
+          <pre><code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+         console.log(chalk.blue.bold('*** Scrambling file ***'));
+          </code>
+          </pre>
+          <a class="script-ref" href="../scripts/cliWithHelpers.js">/scripts/cliWithHelpers.js</a>
+        </section>
         <section>
           <h2>Recap</h2>
 
           <ul>
-            <li></li>
-            <li></li>
+            <li>shebang &nbsp;&nbsp;&nbsp;#!/usr/bin/env node</li>
+            <li>The "process" object gives us access to command line arguments</li>
+            <li>npm modules to make your life easier</li>
+            <li>
+              https://nodejs.org/en/knowledge/command-line/how-to-parse-command-line-arguments/
+            </li>
           </ul>
         </section>
 
