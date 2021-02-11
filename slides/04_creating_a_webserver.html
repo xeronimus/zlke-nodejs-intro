@@ -24,12 +24,12 @@
           <h2>A simple webserver</h2>
 
           <pre><code
-                  class="hljs javascript"
-                  data-trim
-                  contenteditable
-                  data-noescape
-                  spellcheck="false"
-          >
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
           const http = require('http');
 
           http.createServer((req, res) => {
@@ -38,6 +38,17 @@
           }).listen(8080);
           </code></pre>
           <a class="script-ref" href="../scripts/simpleServer.js">/scripts/simpleServer.js</a>
+
+          <p>
+            <a href="https://nodejs.org/dist/latest/docs/api/http.html" target="_blank"
+              >https://nodejs.org/dist/latest/docs/api/http.html</a
+            >
+            <a
+              href="https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction"
+              target="_blank"
+              >https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction</a
+            >
+          </p>
         </section>
 
         <section>
@@ -53,12 +64,12 @@
           </p>
 
           <pre><code
-            class="hljs javascript"
-            data-trim
-            contenteditable
-            data-noescape
-            spellcheck="false"
-          >
+        class="hljs javascript"
+        data-trim
+        contenteditable
+        data-noescape
+        spellcheck="false"
+      >
           const app = require('express')();
           const port = 3000;
 
@@ -70,11 +81,85 @@
         </section>
 
         <section>
+          <h2>MEAN / MERN Stack</h2>
+
+          <p>
+            <img src="../img/MEAN_stack.png" style="max-width: 30%" />
+          </p>
+          <p>
+            <img src="../img/MERN_stack.png" style="max-width: 30%" />
+          </p>
+
+          <p>
+            <a href="https://en.wikipedia.org/wiki/MEAN_(solution_stack)" target="_blank"
+              >https://en.wikipedia.org/wiki/MEAN_(solution_stack)</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2>Express.js Features</h2>
+
+          All in all, rather thin layer of fundamental web app features!
+
+          <ul>
+            <li>Routing</li>
+            <li>Middlewares</li>
+            <li>Integration of templating engines (for server side rendering)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Express.js Middleware</h2>
+
+          <p>
+            Middleware functions are functions that have access to the request object (req), the
+            response object (res), and the next middleware function.
+          </p>
+
+          <p>
+            Chain of Middleware functions, until one of them ends the req-res cylce by sending a
+            HTTP status code (and optional body).
+          </p>
+
+          <pre><code
+            class="hljs javascript"
+            data-trim
+            contenteditable
+            data-noescape
+            spellcheck="false"
+          >
+            const app = require('express')();
+            const port = 3000;
+
+            function loggerMiddleware(req, res, next) {
+              console.log(
+                `HTTP REQUEST ${req.method} ${req.url}` +
+                `${req.headers['user-agent']}`
+              );
+              next();
+            }
+
+            app.use(loggerMiddleware);
+
+            app.get('/', (req, res) => {
+              res.send('Hello World!');
+            });
+
+            app.listen(port);
+
+          </code></pre>
+          <a class="script-ref" href="../scripts/simpleExpressMiddleware.js"
+            >/scripts/simpleExpressMiddleware.js</a
+          >
+        </section>
+
+        <section>
           <h2>Recap</h2>
 
           <ul>
-            <li></li>
-            <li></li>
+            <li>Built-in module "http" that listens to incoming requests on a specific port</li>
+            <li>Express.js as a popular framework for building webapps with Node.js</li>
           </ul>
         </section>
 

@@ -63,12 +63,12 @@
   position: absolute;
   top: 0;
   right: 4vw;
-  width: 8vw;
-  height: 8vw;
-  min-width: 100px;
-  min-height: 100px;
-  max-width: 200px;
-  max-height: 200px;
+  width: 6vw;
+  height: 6vw;
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 100px;
+  max-height: 100px;
   background: url('../../img/zuehlke_logo.jpg');
   background-size: contain;
 }
@@ -472,7 +472,7 @@ body {
 
 .reveal {
   font-family: 'Open Sans', sans-serif;
-  font-size: 36px;
+  font-size: 26px;
   font-weight: normal;
   color: #444444;
 }
